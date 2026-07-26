@@ -1,4 +1,5 @@
-@use '../../../styles' as style;
+@use 'sass:color';
+@use '../../../tokens' as style;
 
 :host {
     display: grid;
@@ -78,7 +79,7 @@
 
         .searchButton {
             text-wrap: nowrap;
-            background-color: darken(style.$primary-color, 10%);
+            background-color: color.adjust(style.$primary-color, $lightness: -10%);
             height: 100%;
             font-size: clamp(.75rem, 4vw, 1.25rem);
             padding: 0.5rem 1rem;
