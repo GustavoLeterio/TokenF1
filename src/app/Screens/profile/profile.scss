@@ -1,0 +1,149 @@
+@use '../../../styles.scss' as style;
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  height: 100%;
+}
+
+aside {
+  width: 25%;
+  height: 100%;
+}
+
+article {
+  display: grid;
+  width: 50%;
+  height: 100%;
+  grid-template-rows: repeat(10, 10%);
+
+  .profileContent {
+    grid-row: 1/5;
+    color: white;
+    position: relative;
+
+    mat-icon {
+      cursor: pointer;
+      top: 1rem;
+      right: 1rem;
+      position: absolute;
+    }
+
+    .profileInfo {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 100%;
+
+      .username {
+        font-family: 'URW DIN', sans-serif;
+        font-size: clamp(2rem, 4vw, 2.5rem);
+        background: -webkit-linear-gradient(270deg, #eee 40%, #7d7d7d 70%);
+        filter: drop-shadow(0 0 8px rgb(0, 0, 0));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .infoDescription {
+        color: #888;
+      }
+
+      .levelInfo {
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        align-items: flex-end;
+
+        .levelLogo {
+          color: #888;
+          transition: style.$default-transition;
+          font-family: 'URW DIN', sans-serif;
+          font-size: 1.5rem;
+        }
+
+        &:hover {
+          .levelLogo {
+            color: white;
+          }
+
+          .levelBarContainer .levelBarText {
+            span {
+              color: white;
+            }
+          }
+
+          .levelBarContainer .levelBar {
+            background-color: white;
+          }
+        }
+
+
+        .levelBarContainer {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          width: 100%;
+
+          .levelBarText {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+
+            span {
+              transition: style.$default-transition;
+              font-size: 1rem;
+              color: #888;
+            }
+          }
+
+          .levelBar {
+            gap: 1rem;
+            display: flex;
+            align-items: center;
+            height: 6px;
+            width: 100%;
+            background-color: #888;
+            border-radius: 2px;
+            box-shadow: inset 0 0 4px rgb(39, 39, 39);
+            transition: style.$default-transition;
+
+            .levelBarFill {
+              border-radius: 2px;
+              height: 50%;
+              background-color: white;
+              box-shadow: 0 -1px 0 rgb(255, 0, 0), //top
+                0 -2px 4px rgba(255, 255, 255, .75), //top
+                0 -3px 2px rgb(255, 0, 0), //top
+                0 -8px 12px rgba(255, 0, 0, 0.5), //top
+                0 1px 0 rgb(255, 0, 0), //bottom
+                0 2px 4px rgba(255, 255, 255, .75), //bottom
+                0 3px 2px rgb(255, 0, 0), //bottom
+                0 8px 12px rgba(255, 0, 0, 0.5), //bottom
+                -1px 0 0 rgb(255, 0, 0), //left
+                -2px 0 4px rgba(255, 255, 255, .75), //left
+                -3px 0 2px rgb(255, 0, 0), //left
+                -8px 0 12px rgba(255, 0, 0, 0.5), //left
+                1px 0 0 rgb(255, 0, 0), //right
+                2px 0 4px rgba(255, 255, 255, .75), //right
+                3px 0 2px rgb(255, 0, 0), //right
+                8px 0 12px rgba(255, 0, 0, 0.5), //right
+                inset 0 0 3px rgba(255, 19, 19, 1);
+            }
+          }
+        }
+      }
+    }
+
+    img {
+      height: 100%;
+      border-radius: 100%;
+      padding: 0.25rem;
+      object-fit: cover;
+    }
+  }
+}

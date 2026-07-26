@@ -1,0 +1,46 @@
+<aside>
+</aside>
+<article>
+    <app-glassmorphism-card class="profileContent" [externalStyle]="{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '2rem',
+            borderRadius: '1.5rem',
+            padding: '1rem' }">
+        <img class="neonBorderSetup neonBorderHover" [src]="'https://thispersondoesnotexist.com/random-person.jpeg'"
+            alt="Profile Picture">
+        <div class="profileInfo">
+            <h1 class="username">{{profile.username}}</h1>
+            <p><span class="infoDescription">Sessions:</span> {{profile.sessions}}</p>
+            <p><span class="infoDescription">Favorite Track:</span> {{profile.favTrack}}</p>
+            <p><span class="infoDescription">Ranking:</span> {{profile.ranking.name ?? 'No ranking'}}</p>
+            <div class="levelInfo">
+                <span class="levelLogo">XP</span>
+                <div class="levelBarContainer">
+                    <div class="levelBarText">
+                        <span>{{profile.ranking.minSessions*100}}XP</span>
+                        <span>{{profile.ranking.nextRank?.minSessions ?? 'Max '}}XP</span>
+                    </div>
+                    <div class="levelBar">
+
+                        <div class="levelBarFill" [style.width.%]="getLevelPercentage(profile.sessions)"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <mat-icon>share</mat-icon>
+    </app-glassmorphism-card>
+</article>
+<aside>
+    <app-glassmorphism-card>
+        <h1>Career and Statistics</h1>
+        <div class="careerAndStatisticsContent">
+            <div class="careerAndStatisticsItem">
+                <h2>Career</h2>
+                <p>Total Sessions: {{profile.sessions}}</p>
+                <p>Total Tracks: {{profile.tracks}}</p>
+                <p>Total Time: {{profile.time}}</p>
+            </div>
+        </div>
+    </app-glassmorphism-card>
+</aside>

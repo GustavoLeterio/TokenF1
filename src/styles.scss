@@ -1,1 +1,137 @@
-/* You can add global styles to this file, and also import other style files */
+// Include theming for Angular Material with `mat.theme()`.
+// This Sass mixin will define CSS variables that are used for styling Angular Material
+// components according to the Material 3 design spec.
+// Learn more about theming and how to use it for your application's
+// custom components at https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
+@font-face {
+  font-family: 'URW DIN';
+  src: local('URW DIN Bold'), local('URW-DIN-Bold'),
+      url('../public/URWDIN-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+html {
+  @include mat.theme((color: (primary: mat.$rose-palette,
+        tertiary: mat.$red-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    ));
+}
+
+
+$default-transition: 0.3s ease-in-out;
+$primary-color: #ff5252;
+
+
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
+@import './app/Animations/route-motion-blur.scss';
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Google Sans', sans-serif;
+  background-image: url('../public/bgv2.png');
+  background-position: center bottom;
+  background-size: cover;
+  position: relative;
+
+  //ANGULAR MATERIAL STYLES
+  // Default the application to a light color theme. This can be changed to
+  // `dark` to enable the dark color theme, or to `light dark` to defer to the
+  // user's system settings.
+  color-scheme: light;
+
+  // Set a default background, font and text colors for the application using
+  // Angular Material's system-level CSS variables. Learn more about these
+  // variables at https://material.angular.dev/guide/system-variables
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+}
+
+.mat-icon,
+.material-icons {
+  font-family: 'Material Icons';
+}
+
+app-root,
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: .5rem;
+
+  main {
+    padding: 1rem .5rem;
+    margin-top: 80.8px; //Height of the header
+    flex-grow: 1;
+    width: 100%;
+    height: 0px;
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  main {
+    margin-top: 68px; //Height of the header
+  }
+}
+
+.neonBorderSetup {
+  transition: $default-transition;
+  box-shadow:
+    0 -1px 0 rgba(255, 0, 0, 0), //top
+    0 -2px 4px rgba(255, 255, 255, 0), //top
+    0 -3px 2px rgba(255, 0, 0, 0), //top
+    0 -8px 12px rgba(255, 0, 0, 0), //top
+    0 1px 0 rgba(255, 0, 0, 0), //bottom
+    0 2px 4px rgba(255, 255, 255, 0), //bottom
+    0 3px 2px rgba(255, 0, 0, 0), //bottom
+    0 8px 12px rgba(255, 0, 0, 0), //bottom
+    -1px 0 0 rgba(255, 0, 0, 0), //left
+    -2px 0 4px rgba(255, 255, 255, 0), //left
+    -3px 0 2px rgba(255, 0, 0, 0), //left
+    -8px 0 12px rgba(255, 0, 0, 0), //left
+    1px 0 0 rgba(255, 0, 0, 0), //right
+    2px 0 4px rgba(255, 255, 255, 0), //right
+    3px 0 2px rgba(255, 0, 0, 0), //right
+    8px 0 12px rgba(255, 0, 0, 0), //right
+    inset 0 -6px 12px rgba(144, 32, 32, 0),
+    inset -3px 0 12px rgba(144, 32, 32, 0),
+    inset 3px -6px 12px rgba(144, 32, 32, 0),
+    inset 0 6px 12px rgba(144, 32, 32, 0),
+    inset 0 -1px 2px rgba(116, 48, 48, 0.5), inset 0 1px 0 rgba(205, 99, 99, 0.5);
+}
+
+.neonBorderLit,
+.neonBorderHover:hover {
+  box-shadow:
+    0 -1px 0 rgb(255, 0, 0), //top
+    0 -2px 4px rgba(255, 255, 255, .75), //top
+    0 -3px 2px rgb(255, 0, 0), //top
+    0 -8px 12px rgba(255, 0, 0, 0.5), //top
+    0 1px 0 rgb(255, 0, 0), //bottom
+    0 2px 4px rgba(255, 255, 255, .75), //bottom
+    0 3px 2px rgb(255, 0, 0), //bottom
+    0 8px 12px rgba(255, 0, 0, 0.5), //bottom
+    -1px 0 0 rgb(255, 0, 0), //left
+    -2px 0 4px rgba(255, 255, 255, .75), //left
+    -3px 0 2px rgb(255, 0, 0), //left
+    -8px 0 12px rgba(255, 0, 0, 0.5), //left
+    1px 0 0 rgb(255, 0, 0), //right
+    2px 0 4px rgba(255, 255, 255, .75), //right
+    3px 0 2px rgb(255, 0, 0), //right
+    8px 0 12px rgba(255, 0, 0, 0.5), //right
+    inset 0 -6px 12px rgba(144, 32, 32, 0.5),
+    inset -3px 0 12px rgba(144, 32, 32, 0.5),
+    inset 3px -6px 12px rgba(144, 32, 32, 0.5),
+    inset 0 6px 12px rgba(144, 32, 32, 0.5);
+}

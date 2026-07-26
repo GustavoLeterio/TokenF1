@@ -1,0 +1,200 @@
+@use '../../../styles' as style;
+
+:host {
+    display: grid;
+    grid-template-rows: repeat(10, 10%);
+    flex-grow: 1;
+}
+
+
+.searchBar {
+    grid-row: 2;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+
+    .textContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        .title {
+            background: -webkit-linear-gradient(270deg,#ffc7c7 30%,#eee 40%, #7d7d7d 60%);
+            filter: drop-shadow(0 0 8px rgb(0, 0, 0));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: clamp(2rem, 4vw, 4rem);
+            text-align: center; 
+            font-family: 'URW DIN', sans-serif;
+        }
+
+    }
+
+    .inputContainer {
+        width: 100%;
+        max-width: 40%;
+        border-radius: .75rem;
+        padding: .5rem .5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        background: radial-gradient(rgba(0, 0, 0, .2) 50%, rgba(98, 56, 56, 0.274) 100%);
+        backdrop-filter: blur(10px);
+        
+        .searchLabel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.25rem;
+            width: 100%;
+            mat-icon {
+                font-size: 2rem;
+                width: 2rem;
+                height: 2rem;
+                color: gray;
+                transition: color style.$default-transition;
+            }
+
+            &:has(input:focus) {
+                mat-icon {
+                    color: white;
+                }
+            }
+
+            input {
+                padding: 0.5rem 1rem;
+                border: none;
+                outline: none;
+                width: 100%;
+                color: white;
+                font-size: clamp(.75rem, 4vw, 1.25rem);
+                background: transparent;
+            }
+        }
+
+
+        .searchButton {
+            text-wrap: nowrap;
+            background-color: darken(style.$primary-color, 10%);
+            height: 100%;
+            font-size: clamp(.75rem, 4vw, 1.25rem);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            transition: box-shadow 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: 0px solid black;
+            color: white;
+            box-shadow: inset 0 0 24px 0 rgba(255, 150, 150, 0.25),
+                inset 0 0 12px -2px rgba(0, 0, 0, 0.5);
+
+            &:hover {
+                box-shadow: inset 0 0 24px 0 rgba(255, 150, 150, 0.25),
+                    inset 0 0 12px -2px rgba(0, 0, 0, 0.5),
+                    -2px 0 8px 0 rgba(255, 255, 255, 0.25),
+                    -6px 0 12px 0 rgba(255, 1, 1, 0.5);
+                ;
+
+            }
+        }
+    }
+
+    img {
+        filter: drop-shadow(-4px 16px 12px rgba(0, 0, 0, 1));
+        width: 30vw;
+        max-width: 240px;
+    }
+
+
+}
+
+.footer {
+    grid-row: 9/10;
+    width: fit-content;
+    height: fit-content;
+    justify-self: center;
+
+    .footerContent {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        gap: 1rem;
+
+        mat-icon {
+            font-size: 2rem;
+            width: 2rem;
+            height: 2rem;
+            color: white;
+            transition: color style.$default-transition;
+        }
+
+        .footerContentText {
+            color: white;
+            display: flex;
+            flex-direction: column;
+
+            h1 {
+                font-size: 1rem;
+                font-weight: normal;
+            }
+
+            p {
+                font-size: 1rem;
+                font-weight: thin;
+                color: gray;
+            }
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    .footer {
+        .footerContent:nth-last-child(2) {
+            display: none !important;
+
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .searchBar {
+        .inputContainer {
+            max-width: 90%;
+            flex-direction: column;
+            .searchButton {
+                width: 100%;
+            }
+        }
+    }
+
+    .footer {
+        .footerContent:nth-last-child(1) {
+            display: none !important;
+        }
+    }
+}
+
+@media (max-height: 625px) {
+    .searchBar {
+        grid-row: 2/8;
+    }
+
+}
+
+@media (max-height: 575px) {
+    .searchBar {
+        grid-row: 1/10;
+        align-self: center;
+    }
+
+    .footer {
+        display: none;
+    }
+}

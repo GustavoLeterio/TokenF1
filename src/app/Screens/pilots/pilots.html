@@ -1,0 +1,40 @@
+<section class="searchBar">
+    <img src="TokenLogo.webp" alt="Token Logo" />
+    <div class="textContainer">
+        <h1 class="title">FIND YOUR PILOT</h1>
+        <p class="description">Write your racer name and check your history!</p>
+    </div>
+    <div class="inputContainer neonBorderLit">
+        <label for="text" class="searchLabel">
+            <mat-icon>search</mat-icon>
+            <input type="text" id="text" placeholder="Your name, Racer!" />
+        </label>
+        <button [routerLink]="'/profile'" class="searchButton">Race ⭢</button>
+    </div>
+</section>
+
+<footer class="footer">
+    <app-glassmorphism-card [externalStyle]="{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '2rem' }">
+        <div class="footerContent">
+            <mat-icon>search</mat-icon>
+            <div class="footerContentText">
+                <h1>Quick Search</h1>
+                <p>Find any pilot in seconds</p>
+            </div>
+        </div>
+        <div class="footerContent">
+            <mat-icon>emoji_events</mat-icon>
+            <div class="footerContentText">
+                <h1>Quick Search</h1>
+                <p>Find any pilot in seconds</p>
+            </div>
+        </div>
+        <div class="footerContent">
+            <mat-icon>check_circle_outline</mat-icon>
+            <div class="footerContentText">
+                <h1>Quick Search</h1>
+                <p>Find any pilot in seconds</p>
+            </div>
+        </div>
+    </app-glassmorphism-card>
+</footer>

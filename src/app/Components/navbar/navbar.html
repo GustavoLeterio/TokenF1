@@ -1,0 +1,25 @@
+<nav class="{{isHamburgerMenuActive ? 'open' : ''}}">
+    <app-glassmorphism-card [externalStyle]="{ borderRadius: isHamburgerMenuActive?'1rem':'4rem'}">
+        <ul class="menu">
+            <li class="logo">
+                <img src="F1Logo.png" alt="Formula 1 Logo" />
+            </li>
+            <li class="items">
+                <ul class="itemsList">
+                    @for (item of this.menuItems; track item) {
+                    <li [className]="'item ' + (item.route === this.currentRoute ? 'active' : '')">
+                        <a routerLink="/{{item.route}}" (click)="onHamburgerButtonChange(false)">{{ item.label }}</a>
+                    </li>
+                    }
+                </ul>
+            </li>
+            <li class="logo token">
+                <a href="https://www.tokendublin.ie">
+                    <img src="TokenLogo.webp" alt="Formula 1 Logo" />
+                </a>
+            </li>
+            <li class="hamburger-button"><app-hamburger-button [isActive]="isHamburgerMenuActive"
+                    (isActiveChange)="onHamburgerButtonChange($event)"></app-hamburger-button></li>
+        </ul>
+    </app-glassmorphism-card>
+</nav>
