@@ -2,28 +2,43 @@
 
 :host {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+  width: 70%;
+  height: 100%;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+
+.blockTitle {
+  color: #bababa;
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.profileInformation {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
   gap: 1rem;
   width: 100%;
-  height: 100%;
-}
-
-aside {
-  width: 25%;
-  height: 100%;
-}
-
-article {
-  display: grid;
-  width: 50%;
-  height: 100%;
-  grid-template-rows: repeat(10, 10%);
 
   .profileContent {
-    grid-row: 1/5;
+    &::ng-deep>div {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+
+    flex: 2 1 32rem;
+
+    height: auto;
+    max-width: 100%;
+    min-width: min(100%, 32rem);
+
     color: white;
-    position: relative;
 
     mat-icon {
       cursor: pointer;
@@ -34,25 +49,88 @@ article {
 
     .profileInfo {
       display: flex;
+      flex-wrap: wrap;
       flex-direction: column;
-      height: 100%;
-      width: 100%;
+      justify-content: center;
+      gap: 1rem;
+      flex: 2 1 16rem;
+      max-width: 100%;
+      min-width: min(100%, 16rem);
 
-      .username {
-        font-family: 'URW DIN', sans-serif;
-        font-size: clamp(2rem, 4vw, 2.5rem);
-        background: -webkit-linear-gradient(270deg, #eee 40%, #7d7d7d 70%);
-        filter: drop-shadow(0 0 8px rgb(0, 0, 0));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
+      .textContent {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
 
-      .infoDescription {
-        color: #888;
+        .username {
+          font-family: 'URW DIN', sans-serif;
+          font-size: clamp(2rem, 4vw, 2.5rem);
+          background: -webkit-linear-gradient(270deg, #eee 40%, #7d7d7d 70%);
+          filter: drop-shadow(0 0 8px rgb(0, 0, 0));
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        .infoDescription {
+          color: #888;
+        }
+
+
+        .ranking {
+          padding: 0.25rem 1rem;
+          border-radius: 3rem;
+          width: fit-content;
+          backdrop-filter: blur(1rem);
+          box-shadow: inset 0 0 12px rgba(94, 94, 94, 0.25);
+
+          margin-top: 1rem;
+
+          &.rankless {
+            color: style.$rankless-primary-color;
+            background-color: style.$rankless-secondary-color;
+            border: style.$rankless-primary-color 2px solid;
+            box-shadow: 0 0 6px style.$rankless-primary-color;
+          }
+
+          &.rookie {
+            color: style.$rookie-primary-color;
+            background-color: style.$rookie-secondary-color;
+            border: style.$rookie-primary-color 2px solid;
+            box-shadow: 0 0 6px style.$rookie-primary-color;
+          }
+
+          &.amateur {
+            color: style.$amateur-primary-color;
+            background-color: style.$amateur-secondary-color;
+            border: style.$amateur-primary-color 2px solid;
+            box-shadow: 0 0 6px style.$amateur-primary-color;
+          }
+
+          &.pro {
+            color: style.$pro-primary-color;
+            background-color: style.$pro-secondary-color;
+            border: style.$pro-primary-color 2px solid;
+            box-shadow: 0 0 6px style.$pro-primary-color;
+          }
+
+          &.elite {
+            color: style.$elite-primary-color;
+            background-color: style.$elite-secondary-color;
+            border: style.$elite-primary-color 2px solid;
+            box-shadow: 0 0 6px style.$elite-primary-color;
+          }
+
+          &.legend {
+            color: style.$legend-primary-color;
+            background-color: style.$legend-secondary-color;
+            border: style.$legend-primary-color 2px solid;
+            box-shadow: 0 0 6px style.$legend-primary-color;
+          }
+        }
       }
 
       .levelInfo {
-        margin-top: 1rem;
         display: flex;
         align-items: center;
         gap: 1rem;
@@ -62,25 +140,9 @@ article {
           color: #888;
           transition: style.$default-transition;
           font-family: 'URW DIN', sans-serif;
+          font-weight: 700;
           font-size: 1.5rem;
         }
-
-        &:hover {
-          .levelLogo {
-            color: white;
-          }
-
-          .levelBarContainer .levelBarText {
-            span {
-              color: white;
-            }
-          }
-
-          .levelBarContainer .levelBar {
-            background-color: white;
-          }
-        }
-
 
         .levelBarContainer {
           display: flex;
@@ -136,14 +198,264 @@ article {
             }
           }
         }
+
+        &:hover {
+          .levelLogo {
+            color: white;
+          }
+
+          .levelBarContainer .levelBarText {
+            span {
+              color: white;
+            }
+          }
+
+          .levelBarContainer .levelBar {
+            background-color: white;
+          }
+        }
       }
     }
 
     img {
-      height: 100%;
+      height: 200px;
       border-radius: 100%;
       padding: 0.25rem;
       object-fit: cover;
     }
+  }
+
+
+  .infoCard {
+    flex: 1 1 20rem;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    min-width: min(100%, 20rem);
+
+
+
+    .infoBlocks {
+      display: grid;
+      column-gap: 1rem;
+      overflow: hidden;
+
+      .infoBlock {
+        color: #bababa;
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+        padding: .5rem 0;
+        border-bottom: 1px solid #888;
+
+        &.xp {
+          grid-row: 2/2;
+          grid-column: 1/4;
+        }
+
+        &.winLossRatio {
+          grid-row: 3/3;
+          grid-column: 1/4;
+          border: none;
+          display: flex;
+          align-items: flex-end;
+          flex-direction: row;
+          gap: .5rem;
+
+          .infoBlockContent {
+            display: flex;
+            flex-direction: column;
+
+            & * {
+              white-space: nowrap;
+            }
+          }
+
+          apx-chart,
+          apx-chart ::ng-deep>div {
+            width: 100%;
+          }
+
+          ::ng-deep .apexcharts-tooltip.apexcharts-theme-dark {
+            background: rgba(18, 18, 22, 0.85) !important;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow:
+              0 -1px 0 rgb(255, 0, 0), //top
+              0 -2px 2px rgba(255, 255, 255, .75), //top
+              0 -3px 1px rgb(255, 0, 0), //top
+              0 -8px 6px rgba(255, 0, 0, 0.5), //top
+              0 1px 0 rgb(255, 0, 0), //bottom
+              0 2px 2px rgba(255, 255, 255, .75), //bottom
+              0 3px 1px rgb(255, 0, 0), //bottom
+              0 8px 6px rgba(255, 0, 0, 0.5), //bottom
+              -1px 0 0 rgb(255, 0, 0), //left
+              -2px 0 2px rgba(255, 255, 255, .75), //left
+              -3px 0 1px rgb(255, 0, 0), //left
+              -8px 0 6px rgba(255, 0, 0, 0.5), //left
+              1px 0 0 rgb(255, 0, 0), //right
+              2px 0 2px rgba(255, 255, 255, .75), //right
+              3px 0 1px rgb(255, 0, 0), //right
+              8px 0 6px rgba(255, 0, 0, 0.5), //right
+              inset 0 -6px 6px rgba(144, 32, 32, 0.5),
+              inset -3px 0 6px rgba(144, 32, 32, 0.5),
+              inset 3px -6px 6px rgba(144, 32, 32, 0.5),
+              inset 0 6px 6px rgba(144, 32, 32, 0.5);
+            border-radius: 6px !important;
+            padding: 4px 8px !important;
+            overflow: visible !important;
+          }
+
+          ::ng-deep .apexcharts-tooltip-title {
+            display: none !important;
+          }
+
+          ::ng-deep .apexcharts-tooltip-text-y-value {
+            color: #FFFFFF !important;
+            font-family: 'Titillium Web', 'Roboto', sans-serif !important;
+            font-weight: 700 !important;
+            font-size: 13px !important;
+            letter-spacing: 0.5px;
+          }
+
+          ::ng-deep .apexcharts-tooltip-marker {
+            display: none;
+          }
+        }
+
+        .info {
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+.matchList {
+  min-height: 400px;
+  flex: 1;
+
+  &>app-glassmorphism-card::ng-deep.glassmorphismSimpleContainer {
+    display: flex;
+    gap: 0 !important;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .infoCard {
+    overflow: auto;
+
+    table {
+      padding: 0 .25rem;
+      border-spacing: .5rem;
+      width: 100%;
+      color: white;
+      text-align: center;
+      overflow: auto;
+
+      th {
+        color: #888;
+        font-weight: 400;
+        padding: .5rem 0;
+
+       .trackNameTH {
+          padding-left: 1rem;
+        }
+
+        .actionsTH {
+          padding-right: 1rem;
+        }
+      }
+
+      tbody {
+        overflow: visible;
+
+        .matchRow {
+          border-radius: 12px;
+          box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.5), style.$neon-border-setup;
+          border: 1px solid rgba(255, 255, 255, 0.5);
+          margin-bottom: 1rem;
+          transition: style.$default-transition;
+
+          &:hover {
+            box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.0), style.$neon-border-lit;
+          }
+
+
+          td {
+            height: 100%;
+            padding: .5rem .25rem;
+            color: white;
+            word-break: break-all;
+
+            &.trackData {
+              text-align: left;
+            }
+          }
+
+          .sessionId {
+            padding-left: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+          }
+
+          .trackData {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+
+            .trackName {
+              font-size: 1.25rem;
+              font-weight: 700;
+            }
+
+            .trackDescription {
+              color: #bababa;
+            }
+          }
+
+          .actions {
+            padding-right: 1rem;
+
+            a {
+              display: grid;
+              place-items: center;
+              transition: style.$default-transition;
+              color: #bababa;
+              text-decoration: none;
+
+              &:hover {
+                color: white;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  :host {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .matchList {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 550px) {
+
+  .gridPosition,
+  .gridPositionTH,
+  .bestLapTimeTH,
+  .bestLapTime,
+  .trackDescription {
+    display: none;
   }
 }

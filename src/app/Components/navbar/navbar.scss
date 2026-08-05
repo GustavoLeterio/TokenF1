@@ -15,6 +15,9 @@ nav {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    app-glassmorphism-card {
+        height: auto;
+    }
 
     .menu {
         list-style: none;

@@ -28,17 +28,18 @@
   }
 }
 
-// Root não anima — evita fade no documento inteiro.
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
 }
 
-// Só o conteúdo das telas.
 main {
-  view-transition-name: route-page;
   overflow: clip;
+}
+
+html:active-view-transition main {
+  view-transition-name: route-page;
 }
 
 ::view-transition-group(route-page) {

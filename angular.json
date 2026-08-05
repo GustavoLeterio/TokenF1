@@ -38,6 +38,11 @@
             "outputMode": "server",
             "ssr": {
               "entry": "src/server.ts"
+            },
+            "security": {
+              "allowedHosts": [
+                "*.devtunnels.ms"
+              ]
             }
           },
           "configurations": {
@@ -66,6 +71,11 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "allowedHosts": [
+              ".devtunnels.ms"
+            ]
+          },
           "configurations": {
             "production": {
               "buildTarget": "TokenF1:build:production"

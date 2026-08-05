@@ -1,25 +1,21 @@
-<aside>
-</aside>
-<article>
-    <app-glassmorphism-card class="profileContent" [externalStyle]="{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: '2rem',
-            borderRadius: '1.5rem',
-            padding: '1rem' }">
+<article class="profileInformation">
+    <app-glassmorphism-card class="profileContent" [externalStyle]="{display:'flex',...glassmorphismCardStyle}">
         <img class="neonBorderSetup neonBorderHover" [src]="'https://thispersondoesnotexist.com/random-person.jpeg'"
             alt="Profile Picture">
         <div class="profileInfo">
-            <h1 class="username">{{profile.username}}</h1>
-            <p><span class="infoDescription">Sessions:</span> {{profile.sessions}}</p>
-            <p><span class="infoDescription">Favorite Track:</span> {{profile.favTrack}}</p>
-            <p><span class="infoDescription">Ranking:</span> {{profile.ranking.name ?? 'No ranking'}}</p>
+            <div class="textContent">
+                <h1 class="username">{{profile.username}}</h1>
+                <p><span class="infoDescription">Sessions:</span> {{profile.sessions}}</p>
+                <p><span class="infoDescription">Favorite Track:</span> {{profile.favTrack}}</p>
+                <p class="ranking {{profile.ranking.name.toLowerCase()}}">{{profile.ranking.name}}</p>
+            </div>
             <div class="levelInfo">
                 <span class="levelLogo">XP</span>
                 <div class="levelBarContainer">
                     <div class="levelBarText">
                         <span>{{profile.ranking.minSessions*100}}XP</span>
-                        <span>{{profile.ranking.nextRank?.minSessions ?? 'Max '}}XP</span>
+                        <span>{{profile.ranking.nextRank?.minSessions ? profile.ranking.nextRank?.minSessions*100 :
+                            'Max'}}XP</span>
                     </div>
                     <div class="levelBar">
 
@@ -30,17 +26,72 @@
         </div>
         <mat-icon>share</mat-icon>
     </app-glassmorphism-card>
-</article>
-<aside>
-    <app-glassmorphism-card>
-        <h1>Career and Statistics</h1>
-        <div class="careerAndStatisticsContent">
-            <div class="careerAndStatisticsItem">
-                <h2>Career</h2>
-                <p>Total Sessions: {{profile.sessions}}</p>
-                <p>Total Tracks: {{profile.tracks}}</p>
-                <p>Total Time: {{profile.time}}</p>
+    <app-glassmorphism-card class="infoCard" [externalStyle]="glassmorphismCardStyle">
+        <h1 class="blockTitle">Career and Statistics</h1>
+        <div class="infoBlocks">
+            <div class="infoBlock races">
+                <span class="infoTitle">Total Races:</span>
+                <span class="info">{{profile.sessions}}</span>
+            </div>
+            <div class="infoBlock track">
+                <span class="infoTitle">Total Tracks:</span>
+                <span class="info">{{profile.tracks}}</span>
+            </div>
+            <div class="infoBlock wins">
+                <span class="infoTitle">Total Wins:</span>
+                <span class="info">{{profile.win}}</span>
+            </div>
+            <!-- <div class="infoBlock xp">
+                <span class="infoTitle">Total XP:</span>
+                <span class="info">{{profile.sessions *100}} XP</span>
+            </div> -->
+            <div class="infoBlock winLossRatio">
+                <div class="infoBlockContent">
+                    <span class="infoTitle">Win/Loss:</span>
+                    <span class="info">{{(profile.win / profile.loss).toFixed(2)}}</span>
+                </div>
+                <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [stroke]="chartOptions.stroke"
+                    [tooltip]="chartOptions.tooltip" [colors]="chartOptions.colors" [fill]="chartOptions.fill">
+                </apx-chart>
             </div>
         </div>
     </app-glassmorphism-card>
-</aside>
+</article>
+
+<article class="matchList">
+    <app-glassmorphism-card [externalStyle]="glassmorphismCardStyle">
+        <h1 class="blockTitle">Career and Statistics</h1>
+        <div class="infoCard">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="sessionIdTH"></th>
+                        <th class="trackNameTH">Name</th>
+                        <th class="dateTH">Date</th>
+                        <th class="gridPositionTH">Grid Position</th>
+                        <th class="positionTH">Position</th>
+                        <th class="bestLapTimeTH">Best Lap</th>
+                        <th class="actionsTH"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (match of profile.matches; track $index) {
+                    <tr class="matchRow">
+                        <td class="sessionId">{{match.session.id}}</td>
+                        <td class="trackData">
+                            <span class="trackName">{{match.trackData.name}}</span>
+                            <span class="trackDescription">{{match.trackData.description.substring(0, 60)}}...</span>
+                        </td>
+                        <td class="date">{{match.date}}</td>
+                        <td class="gridPosition">{{match.gridPosition}}</td>
+                        <td class="position">#{{match.position}}</td>
+                        <td class="bestLapTime">{{match.bestLapTime}}</td>
+                        <td class="actions">
+                            <a href=""><mat-icon>visibility</mat-icon></a>
+                        </td>
+                    </tr>
+                    }
+            </table>
+        </div>
+    </app-glassmorphism-card>
+</article>
